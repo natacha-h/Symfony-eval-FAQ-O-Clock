@@ -1,0 +1,7 @@
+<form action="{{path('answer_new', {'id': question.id})}}" method="POST">
+    <div class="form-group mb-2">
+    <label for="answer">Votre réponse</label>
+    <textarea class="form-control" id="answer" name="answer" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-info mb-2">Répondre</button>
+</form>

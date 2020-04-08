@@ -1,0 +1,24 @@
+<nav id="main-nav">
+    <div>
+    <a href="{{ path('question_list') }}">Accueil</a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{path('user_profile', {'id': app.user.id})}} ">Mon profil</a> 
+    {% else %}
+        <a href="{{path('app_login')}} ">Connexion</a>              
+        <a href="{{path('user_new')}}">Inscription</a>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN')  %}
+        <a href="{{path('admin_tag_index')}}">Administration</a>                
+    {% elseif is_granted('ROLE_MODERATEUR')%}
+        <a href="{{path('admin_tag_index')}}">Administration</a>
+    {% endif %}
+    </div>
+    <div id="logout">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{path('app_logout')}}" >Se déconnecter</a>
+    {% endif %}
+    </div>
+    
+    
+    
+</nav>

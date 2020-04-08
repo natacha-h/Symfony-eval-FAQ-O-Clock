@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}FAQ-O-Clock{% endblock %}</title>
+        {# Css boostrap #}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {# Css Fontawesome #}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        {# google fonts #}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700&display=swap" rel="stylesheet">
+        {# mon css #}
+        <link rel="stylesheet" href=" {{asset('css/style.css')}} ">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <header>
+        {% block header %}
+            <div id="banner">
+                <h1>FAQ-O-CLOCK</h1>
+                <span id="citation">Celui qui pose une question risque d'avoir l'air bête cinq minutes. </br> Celui qui ne pose pas de question restera bête toute sa vie.</span>
+            </div>
+            {{include('nav/_main_nav.html.twig')}}
+        {% endblock %}
+        </header>
+        <div class="container">
+            <div class="row">
+                <section id="flash_messages">
+                {# {{dump(app.flashes)}} #}
+                    {% for label, messages in app.flashes %} {#pour toutes les keys dans app.flashes #}
+                        {% for message in messages %} {# pour chaque  keys  du tableau flash courant #}
+                            <div class="alert alert-{{ label }}"> {# j'utilise la key pour compléter la classe css #}
+                                {{ message }} {# j'affiche le message #}
+                            </div>
+                        {% endfor %}
+                    {% endfor %} 
+                </section>
+            </div>    
+                    {% block content %}
+                    {# ici il y aura le contenu des pages sur les templates appropriés #}
+                    {% endblock %}
+                
+                    {% block sidebar %}
+                        <div id="ask-question">
+                            <a href="{{path('question_new')}}" >
+                                <button type="button" class="btn btn-info btn-lg mb-3">
+                                    Poser une question
+                                </button>
+                            </a>
+                        </div>
+                    {# ici il y aura le contenu de la sidebar sur le template de la page d'accueil #}
+                    {% endblock %}
+                
+            </div>
+        </div>
+        <footer>
+        
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<h2> Créez un compte</h2>
+
+<p> En créant un compte, vous pourrez poser vos questions et répondre aux questions déjà postées sur le site </p>
+    {{include('form/_form.html.twig', { button_label : 'S\'inscrire'})}}
+{% endblock %}
+

@@ -1,0 +1,10 @@
+nelmio_alice:
+    locale: 'fr_FR' # je veux que Faker Generator fournisse des données en français
+    functions_blacklist:
+        - 'current'
+        - 'shuffle'
+        - 'date'
+        - 'time'
+        - 'file'
+        - 'md5'
+        - 'sha1'

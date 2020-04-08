@@ -1,0 +1,7 @@
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <a href="{{ path('admin_tag_index') }}" class="nav-admin">Gérer les tags</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{path('admin_user_index')}} " class="nav-admin">Gérer les utilisateurs</a>              
+    {% endif %} 
+    
+</nav>

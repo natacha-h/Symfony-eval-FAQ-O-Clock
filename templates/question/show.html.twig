@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container ">
+        <div class="row">        
+            <main class ="col-8">
+                <section id="question">
+                {# Bloc d'affichage des tags #}
+                    <div class="row" id="tag-block">               
+                        {% for tag in question.tags %}
+                            <a href="{{ path('tag_show_questions', {'id': tag.id})}}" class="badge badge-info mr-3">
+                                {{ tag }}
+                            </a>            
+                        {% endfor %}    
+                    </div>
+                    {# Affichage de la question #}
+                    <small>
+                        Question posée le : {{question.createdAt|date("d/m/Y")}} par {{question.author.username}}
+                    </small>
+                    <h3> {{question.title}} </h3>
+                    <p>
+                        {{ question.content}}
+                    </p>
+                </section>
+                {# Affichage des réponses #}
+                <section id="answers">
+                    <div class="list-group">
+                        {% for answer in question.answers %}
+                        {# {{dump(answer.isActive)}} #}
+                        {% set display = 'show' %}
+                            {% if answer.isActive == false %}
+                                {% set display = 'hidden' %}                                
+                            {% endif %}  
+                            {% if is_granted('ROLE_MODERATEUR') %}
+                                    {% set display = 'show' %}
+                            {% endif %}                      
+
+                            <div class="list-group-item {{display}} {{ answer.isValid ? 'validated' }}">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"> {{answer.author.username }} </h5>
+                                    <small> Réponse du {{ answer.updatedAt|date('d/m/Y')}} </small>
+                                </div>
+                                
+                                <div class="row">
+                                    <p class="mb-1 col-9">
+                                        {{ answer.content}}
+                                    </p>
+                                    {# la section qui permet de valider une réponse, et bloquer/débloquer si on est modo ou admin #}
+                                    <section class="validate-block col-3 pr-0">
+                                    
+                                        <a href="{{path('answer_validate', {'id': answer.id})}} ">
+                                            Valider la réponse
+                                            <i class="fas fa-check-circle"></i> 
+                                        </a>                                    
+                                    
+                                        {% if is_granted('ROLE_MODERATEUR') %}
+                                            <a href="{{path('admin_answer_status', {'id': answer.id})}}">
+                                                {# si isActive == true on affiche "bloquer la réponse", si isActive == false on affiche "débloquer la réponse" #}
+                                                {% if answer.isActive == true %}
+                                                    Bloquer la réponse <i class="fas fa-lock"></i>
+                                                {% else %}
+                                                    Débloquer la réponse <i class="fas fa-lock-open"></i>
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                    </section>
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>    
+            </main>
+{% endblock %}
+
+{% block sidebar %}
+        <aside class="col-4">
+            
+            {{parent()}}
+
+            <h3> Répondez à {{question.author.username}}</h3>
+            {{include('answer/_form.html.twig', { 'question' : question  }) }} 
+
+        </aside>   
+    </div>
+</div> 
+{% endblock %}

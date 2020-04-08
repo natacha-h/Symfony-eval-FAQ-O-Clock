@@ -1,0 +1,24 @@
+{% extends 'backend/backend_tpl.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <main class="col-9">
+            <h2>Modifier un tag </h2>
+
+            {{ include('form/_form.html.twig')}}
+            
+        </main>
+{% endblock %}
+
+{% block sidebar %}
+        <aside class="col-3">
+        
+            <a href="{{ path('admin_tag_index') }}">
+                Retour à la liste
+                <i class="fas fa-arrow-circle-left"></i>
+            </a>
+        </aside>
+    </div>
+</div>
+{% endblock %}

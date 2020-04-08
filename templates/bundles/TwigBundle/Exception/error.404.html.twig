@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        
+            <h1> La page n'existe pas </h1>
+    
+            <div class="d-flex justify-content-center">
+                <i class="fas fa-ghost"></i>
+                <i class="fas fa-hat-wizard"></i>
+                <i class="fas fa-dragon"></i>
+            </div>
+        <p>
+            La page à laquelle vous voulez accéder n'existe pas . Vous pouvez <a href="{{ path('question_list') }}">retourner à l'accueil</a>, ou bien <a href="{{ path('app_login') }}">vous connecter</a> 
+            <small>
+                (si vous n'êtes pas encore membre de notre super site, pas de problème, vous pouvez aussi <a href="{{ path('user_new') }}">vous inscrire </a> ) 
+            </small> 
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+App\Entity\User:
+    user_{1..6}:
+        username: '<firstName()>'
+        email: '<email()>'
+        password: '<password()>'
+
+App\Entity\Tag:
+    tag_{1..10}:
+        name: '<word()>'
+
+App\Entity\Question:
+    question_{1..10}:
+        title: '<sentence()>'
+        content: '<text(100)>'
+        createdAt: '<dateTime()>' 
+        updatedAt: '<dateTime()>'
+        # answers: '<numberBetween(1, 5)>x@answer_*' # je veux un nombre entre 1 et 5 de réponses random
+        tags: '2x @tag_*'
+        author: '@user_*'
+        
+App\Entity\Answer:
+    answer_{1..30}:
+        content: '<text(100)>' 
+        createdAt: '<dateTime()>' 
+        updatedAt: '<dateTime()>' 
+        question: '@question_*'
+        author: '@user_*'

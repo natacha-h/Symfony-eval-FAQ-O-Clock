@@ -1,0 +1,50 @@
+{% extends 'backend/backend_tpl.html.twig' %}
+
+{% block content %}
+{# <div class="container">
+    <div class="row"> #}
+        <main>
+            <h2>Liste des Utilisateurs du site</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Changer le statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">
+                            {{user.id}}
+                        </th>
+                        <td>
+                            {{user.username}} 
+                        </td>
+                        <td>
+                            {{user.role}} 
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_user_change_status', { "id" : user.id } ) }}" class="btn btn-secondary">
+                                Changer les droits
+                            </a>
+                        </td>
+                    </tr>            
+                {% endfor %}
+                </tbody>
+            </table>
+        </main>
+{% endblock %}
+{# 
+{% block sidebar %}
+        <aside class="col-3">
+            <a class="btn btn-success" href="{{ path('admin_tag_add') }}">
+                Ajouter un tag
+                <i class="fas fa-plus-circle"></i> 
+            </a>
+        </aside> 
+    </div>
+</div>
+{% endblock %} #}

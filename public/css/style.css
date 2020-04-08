@@ -1,0 +1,162 @@
+/******************** Header du site ********************/
+
+#banner{
+    background-color: #0AC3A7;
+    padding: 2em 2em;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: whitesmoke;
+
+}
+
+h1{
+    margin-bottom: .5em;
+    font-weight: 600;
+}
+
+#citation{
+    font-weight: bold;
+    /* color: whitesmoke; */
+
+    /* font-style: italic; */
+}
+
+/********** Nav principale ************/
+#main-nav{
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #17838E;
+    padding: .5em .8em;
+}
+
+#main-nav a{
+    margin-right: 1em;
+    color: whitesmoke;
+    
+}
+
+/********** Nav admin ************/
+
+.navbar-dark{
+    justify-content: flex-start;
+    font-family: 'Open Sans', sans-serif;
+}
+.nav-admin{
+    margin-right: 1em;    
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: .8em; 
+}
+.nav-admin:hover{
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+
+/******************** Réglages généraux ********************/
+
+.container{
+    margin-top: .5em;
+}
+
+h2, #question{
+    margin: 1em 0 1.5em;
+}
+
+h4{
+    margin-top: .3em;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+aside{
+    margin-top: 2.5em;
+}
+
+#ask-question{
+    margin-bottom: 2em;
+}
+
+/******************** Page d'accueil - liste des question ********************/
+
+h4 a{
+    color: #17838E;
+}
+
+article{
+    border-bottom: .5px solid #17838E;
+    margin-bottom: .5em;
+}
+
+#show-tags{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+#show-tags p{
+    margin-bottom: .1em;
+}
+
+.moderation-block{
+    margin-bottom: 1em;
+}
+.moderation-block a{
+    font-size: .9em;
+    color: #234B78;
+}
+
+
+/********************* Page Show : affiche une qestion et ses réponses *******************/
+
+/* le bloc dans lequel les tags s'affichent */
+#tag-block{
+    margin-bottom: 1em;
+    margin-left: 0;
+}
+
+/* La classe qui permet d'afficher/masquer les réponses bloquée selon le statut du user */
+.hidden{
+    display: none;
+}
+
+/* La class qui met en valeur une réponse validée */
+.validated{
+    background-color: rgb(192, 247, 201);
+    border: 1px solid #17838E;
+}
+
+/* Le block qui contient les liens de validation + blocage/déblocage d'une réponse */
+.validate-block a{
+    font-size: .9em;
+    color: #17838E;
+}
+
+/********************* Affichage des Tags en aside et en détail *******************/
+
+/* affichage des tags sur la sidebar de la page d'accueil et de la page tag/question */
+#tag-sidebar{
+    margin-top: 1em;
+}
+
+#tag-show-question {
+    border-bottom: 1px solid #668;
+    margin-bottom: .5em;
+    padding-top: .2em;
+}
+
+/********************* Page mon profil *******************/
+
+.info-user{
+    margin-bottom: 1em;
+
+}
+#label{
+    font-weight: 600;
+    color: #234B78;
+}

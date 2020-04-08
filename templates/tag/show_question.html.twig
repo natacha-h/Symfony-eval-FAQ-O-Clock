@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <main class="col-9">
+            <h2> {{tag.name}} </h2>
+
+            {% for question in questions %}
+                {# {{dump(question)}} #}
+                <article class="row mb-2" id="tag-show-question">
+                    <div class="col-2">
+                        {{ question.author.username}}
+                    </div>
+
+                    <div class="col-7">
+                        <small class="mb-2">
+                            Question posée le : {{question.createdAt|date("d/m/Y")}}
+                        </small>
+                        <h4>
+                            <a href="{{path('question_show', {"id" : question.id}) }}">
+                                {{ question.title}} 
+                            </a>
+                        </h4>
+                        <p>
+                            {{ question.content}}
+                        </p>
+                    </div>
+                </article>
+            {% endfor %}
+        </main>
+{# {{dump(app.user)}} #}
+{% endblock %}
+
+{% block sidebar %}
+        <aside class="col-3">
+        {{parent()}}
+            {{include('tag/_sidebar_tag.html.twig')}}
+        </aside>
+    </div>
+</div>
+{% endblock %}

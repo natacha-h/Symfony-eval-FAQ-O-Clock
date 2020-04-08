@@ -1,0 +1,52 @@
+{% extends 'backend/backend_tpl.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <main class="col-9">
+            <h2>Liste des Tags</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for tag in tags %}
+                    <tr>
+                        <th scope="row">
+                            {{tag.id}}
+                        </th>
+                        <td>
+                            {{tag.name}} 
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_tag_edit', { "id" : tag.id } ) }}" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_tag_delete', { "id" : tag.id } ) }}" class="btn btn-danger">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>            
+                {% endfor %}
+                </tbody>
+            </table>
+        </main>
+{% endblock %}
+
+{% block sidebar %}
+        <aside class="col-3">
+            <a class="btn btn-success" href="{{ path('admin_tag_add') }}">
+                Ajouter un tag
+                <i class="fas fa-plus-circle"></i> 
+            </a>
+        </aside>
+    </div>
+</div>
+{% endblock %}

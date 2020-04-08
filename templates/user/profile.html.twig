@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {# {{dump(user)}} #}
+    <h2>Bonjour {{user.username }} !</h2>
+
+    <div class="container info-user">
+        <h3 class="mb-4">Mes informations </h3>
+        
+        <div class="row mb-2">
+            <p class="col-4"> <span id="label">Username : </span> {{user.username}} </p> 
+            <p class="col-4"> <span id="label"> e-mail : </span> {{user.email}}</p> 
+        </div>
+           
+            <a href="{{ path('user_profile_edit', {'id': user.id })}}" class="btn btn-info col-3">
+                Modifier le profil
+            </a>
+    </div>
+
+    <h4 class="mb-4"> Mes questions </h4>
+
+    <div class="list-group">
+
+        {% for question in user.questions %}
+            <a href="{{ path('question_show', {'id': question.id})}} " class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{question.title}} </h5>
+                    <small> {{question.updatedAt|date('d/m/Y')}} </small>
+                </div>
+                <p class="mb-1">
+                    {{ question.content }}
+                </p>
+            </a>        
+        {% endfor %}
+
+  </div>
+
+    <h4 class="mb-4"> Mes Réponses </h4>
+
+        <div class="list-group">
+
+            {% for answer in user.answers %}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <small> {{answer.updatedAt|date('d/m/Y')}} </small>
+                    </div>
+                    <p class="mb-1">
+                        {{ answer.content }}
+                    </p>
+                </a>        
+            {% endfor %}
+
+    </div>
+   
+{% endblock %}
+
+{% block sidebar %}
+    
+{% endblock %}

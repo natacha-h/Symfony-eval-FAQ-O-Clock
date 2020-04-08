@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <main class="col-9">
+            <h2>Liste des questions posées</h2>
+
+            {% for question in questions %}
+                {# {{dump(question)}} #}
+                {% set display = 'show' %}
+                {% if question.isActive == false %}
+                    {% set display = 'hidden' %}                                
+                {% endif %}  
+                {% if is_granted('ROLE_MODERATEUR') %}
+                        {% set display = 'show' %}
+                {% endif %}  
+                
+                <article class="row {{display}} ">
+                    <div class="col-2">
+                        {{ question.author.username}}
+                    </div>
+
+                    <div class="col-7">
+                        <p>
+                            Question posée le : {{question.createdAt|date("d/m/Y")}}
+                        </p>
+                        <h4>
+                            <a href="{{path('question_show', {"id" : question.id}) }}">
+                                {{ question.title}} 
+                            </a>
+                        </h4>
+                        <p>
+                            {{ question.content}}
+                        </p>
+                    </div>
+
+                    <div class="col-3">
+                        <div id="show-tags">
+                            {% for tag in question.tags %}
+                                <p >
+                                    <a href="{{ path('tag_show_questions', {'id': tag.id})}} " class="badge badge-info">
+                                        {{ tag.name}}
+                                    </a>
+                                </p> 
+                            {% endfor %}
+                        </div>
+                        <section class="moderation-block">
+                        {% if is_granted('ROLE_MODERATEUR') %}
+                            <a href="{{path('admin_question_status', {'id': question.id})}}">
+                                {# si isActive == true on affiche "lboquer la question", si isActive == false on affiche "débloquer la question" #}
+                                {% if question.isActive == true %}
+                                    Bloquer la question <i class="fas fa-lock"></i>
+                                {% else %}
+                                    Débloquer la question <i class="fas fa-lock-open"></i>
+                                {% endif %}                               
+                            </a>
+                        {% endif %}
+                        </section>
+                    </div>
+
+                </article>
+            {% endfor %}
+        </main>
+{# {{dump(app.user)}} #}
+{% endblock %}
+
+{% block sidebar %}
+        <aside class="col-3">
+
+            {{ parent()}}
+            
+            {{include('tag/_sidebar_tag.html.twig')}}
+        </aside>
+    </div>
+</div>
+{% endblock %}

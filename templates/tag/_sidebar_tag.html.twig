@@ -1,0 +1,8 @@
+<section id="tag-sidebar">
+    <h3> Tags </h3>
+    {% for tag in tags %}
+        <a href="{{ path('tag_show_questions', {'id': tag.id})}}" class="badge badge-info">
+            {{ tag.name}}
+        </a>
+    {% endfor %}
+</section>
